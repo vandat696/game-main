@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game mật mã</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+            width: 100%;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .fullscreen-image {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <form id="passwordForm">
+        <label for="question">Nhập mật mã:</label>
+        <input type="text" id="question" name="question" placeholder="Nhập mật mã..." required>
+        <button type="submit">Xác nhận</button>
+    </form>
+
+    <div id="fullscreenImage" class="fullscreen-image"></div>
+
+    <script>
+        document.getElementById('passwordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const passwords = {
+                code1: 'image/1.png', // Thay URL_HINH_ANH_1 bằng đường dẫn hình ảnh 1
+                code2: 'image/2.png', // Thay URL_HINH_ANH_2 bằng đường dẫn hình ảnh 2
+                code3: 'image/4.png', // Thay URL_HINH_ANH_3 bằng đường dẫn hình ảnh 3
+                code4: 'image/3.png'  // Thay URL_HINH_ANH_4 bằng đường dẫn hình ảnh 4
+            };
+
+            const input = document.getElementById('question').value;
+            const imageUrl = passwords[input];
+
+            if (imageUrl) {
+                const fullscreenImage = document.getElementById('fullscreenImage');
+                fullscreenImage.style.backgroundImage = `url(${imageUrl})`;
+                fullscreenImage.style.display = 'block';
+            } else {
+                alert('Sai mật mã! Vui lòng thử lại.');
+            }
+        });
+    </script>
+</body>
+</html>
